@@ -1,0 +1,118 @@
+#include<stdio.h>
+#include<math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <windows.h>
+
+void menu(); //Created a void for menu to help organise my code
+
+int main() {
+	menu(); //When the main function runs it will call the "menu" void
+}
+void calc() {
+	
+
+
+		//Introduce the variables for the functions
+	int number1;
+	int number2;
+	char functiontype;
+	int get_menu_choice; //Introduce get_menu_type for user menu refrences
+	//Create the user prompts with printf and use scanf_s to allow the machine to read it properly relating to the variables created before
+	//Use scanf_s instead of scanf because it makes the code buggy and broken
+
+
+
+
+	printf("Enter your first number! : ");
+	scanf_s("%d", &number1);
+	printf("Enter your second number! : ");
+	scanf_s("%d", &number2);
+	//Create the prompt for which calculations you want
+	//As of now I only learned how to do add, sub, mult, and div properly but will be learning to expand it to 6 calculations
+	printf("Enter what type of calculation is needed! (+, -, *, /) : ");
+	//I used %c because it is relating back to the char variable 
+	//There is a warning on this scanf_s line (22), but it doesn't seem to hurt the functionality of my code
+	//Fixed an error where the program wouldn't calculate because there wasn't a space before the %c
+	scanf_s(" %c", &functiontype);
+
+	//introduce a switch statement to be able to have the functiontype become any of the calculation values
+	switch (functiontype)
+	{
+		//use of %d is needed because I chose to use int for my variables
+		//one for addition
+	case'+':
+		printf("%d + %d = %d", number1, number2, number1 + number2);
+		printf("\n");
+		system("pause");
+		system("cls");
+		break;
+		//one for subtraction
+	case'-':
+		printf("%d - %d = %d", number1, number2, number1 - number2);
+		printf("\n");
+		system("pause");
+		system("cls");
+		break;
+		//one for multiplication
+	case'*':
+		printf("%d * %d = %d", number1, number2, number1 * number2);
+		printf("\n");
+		system("pause");
+		system("cls");
+		break;
+		//one for division
+	case'/':
+		printf("%d / %d = %d", number1, number2, number1 / number2);
+		printf("\n");
+		system("pause");
+		system("cls");
+		break;
+	}
+
+
+	//Always remember return 0 to close out code
+	return 0;
+	//remember the closing bracket as well
+}
+
+void menu() //this is the void I created my user menu in
+{
+	char input[100];
+	char yes[100] = "yes";
+	char no[100] = "no"; //made only two options, yes and no
+	int yesm;
+	int nom;
+
+
+
+	printf("Welcome to calculator\n"); //Welcome to calculator is the main portion of my menu
+
+	while (1) {
+
+
+
+		printf("Would you like to start?\n"); //Asks if the  user would like to start
+
+		scanf_s("%s", input, 100); 
+
+		yesm = strcmp(input, yes); //made sure to add string compare for yes and no
+		nom = strcmp(input, no);
+
+		if (yesm == 0) {
+			system("cls");
+			calc();
+		} //made so if yes the user moves on to the calc void to make calculations
+
+		else if (nom == 0) {
+			printf(" Goodbye");
+			exit(EXIT_FAILURE); 
+		} //if the user says no output says goodbye and prompts you to exit by pressing any key
+		
+
+		else {
+			printf(" Please type either yes or no\n");
+		}// i added this to give better direction of the options. If you try to say anything other than yes or no it will tell you to do yes or no
+		
+	}
+}
